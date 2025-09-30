@@ -3,37 +3,47 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
     object Idle : MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
-            stateMachine.setState()
+            stateMachine.setState(CalentarAgua)
         }
     }
 
-    object calentarAgua: MaquinaCafeEstados() {
+    object CalentarAgua: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
-            TODO("Not yet implemented")
+            println("Estado: " + StateMachine.getState())
+            println("Calentando agua")
+            stateMachine.setState(filtrarCafe)
         }
     }
 
     object filtrarCafe: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
-            TODO("Not yet implemented")
+            println("Estado: " + StateMachine.getState())
+            println("Filtrando el café")
+            stateMachine.setState(ServirLeche)
         }
     }
 
-    object servirLeche: MaquinaCafeEstados() {
+    object ServirLeche: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
-            TODO("Not yet implemented")
+            println("Estado: " + StateMachine.getState())
+            println("Sirviendo leche")
+            stateMachine.setState(ServirAzuca)
         }
     }
 
-    object servirAzuca: MaquinaCafeEstados() {
+    object ServirAzuca: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
-            TODO("Not yet implemented")
+            println("Estado: " + StateMachine.getState())
+            stateMachine.setState(RetirarTaza)
         }
     }
 
-    object retirarTaza: MaquinaCafeEstados() {
+    object RetirarTaza: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
-            TODO("Not yet implemented")
+            println("Estado: " + StateMachine.getState())
+            println("Café listo, retira la taza")
+            Thread.sleep(2000)
+            stateMachine.setState(Idle)
         }
     }
 
@@ -41,6 +51,7 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
             println("Error inesperado, reiciciando")
+            stateMachine.setState(Idle)
         }
     }
 

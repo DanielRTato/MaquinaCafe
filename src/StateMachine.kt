@@ -2,9 +2,31 @@ object StateMachine {
     private var currentState: MaquinaCafeEstados = MaquinaCafeEstados.Idle
 
     fun setState(newState: MaquinaCafeEstados) {
-        currentState = newState
-        currentState.onEnter(this)
+        if (funcionamientoMaquina(currentState, newState)) {
+            currentState = newState
+            currentState.onEnter(this)
+        } else {
+            println("Transición inválida de ${currentState::class.simpleName} a ${newState::class.simpleName}")
+            currentState = MaquinaCafeEstados.Error
+            currentState.onEnter(this)
+        }
     }
 
     fun getState(): MaquinaCafeEstados = currentState
+
+
+    fun funcionamientoMaquina(from: MaquinaCafeEstados, to: MaquinaCafeEstados): Boolean {
+        return when (from) {
+            MaquinaCafeEstados.Idle -> to == MaquinaCafeEstados.CalentarAgua
+            MaquinaCafeEstados.CalentarAgua -> to == MaquinaCafeEstados.filtrarCafe
+            MaquinaCafeEstados.filtrarCafe -> to == MaquinaCafeEstados.ServirLeche
+            MaquinaCafeEstados.ServirLeche -> to == MaquinaCafeEstados.ServirAzuca
+            MaquinaCafeEstados.ServirAzuca -> to == MaquinaCafeEstados.RetirarTaza
+            MaquinaCafeEstados.RetirarTaza -> to == MaquinaCafeEstados.Idle
+            MaquinaCafeEstados.Error -> to == MaquinaCafeEstados.Idle
+            else -> false
+        }
+    }
+
+
 }
