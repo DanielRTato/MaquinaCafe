@@ -1,11 +1,10 @@
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-
 class MaquinaCafeEstadosTest {
 
     @Test
-    fun prearar_cafe_solo() {
+    fun preparar_cafe_solo() {
         StateMachine.opcionCafe = OpcionCafe(OpcionCafe.TipoCafe.SOLO)
         assertEquals(OpcionCafe.TipoCafe.SOLO, StateMachine.opcionCafe.tipo)
     }
@@ -20,7 +19,9 @@ class MaquinaCafeEstadosTest {
     fun cambios_de_estados_validos() {
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.Idle, MaquinaCafeEstados.CalentarAgua))
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.CalentarAgua, MaquinaCafeEstados.FiltrarCafe))
+        // Ahora FiltrarCafe puede ir a ambos
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.ServirLeche))
+        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.ServirAzuca))
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirLeche, MaquinaCafeEstados.ServirAzuca))
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirAzuca, MaquinaCafeEstados.RetirarTaza))
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.RetirarTaza, MaquinaCafeEstados.Idle))
@@ -33,8 +34,4 @@ class MaquinaCafeEstadosTest {
         assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.CalentarAgua, MaquinaCafeEstados.ServirAzuca))
         assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.RetirarTaza))
     }
-
-
-
-
 }
