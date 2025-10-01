@@ -26,7 +26,11 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
     object ServirLeche: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
-            println("Sirviendo leche")
+            if (stateMachine.opcionCafe.tipo == OpcionCafe.TipoCafe.CON_LECHE) {
+                println("Sirviendo leche")
+            } else {
+                println("Café solo, no se sirve leche")
+            }
             stateMachine.setState(ServirAzuca)
         }
     }
