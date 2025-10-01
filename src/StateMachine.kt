@@ -1,6 +1,6 @@
 object StateMachine {
     private var currentState: MaquinaCafeEstados = MaquinaCafeEstados.Idle
-    var opcionCafe: OpcionCafe = OpcionCafe(OpcionCafe.TipoCafe.SOLO)
+    var opcionCafe: OpcionCafe = OpcionCafe(OpcionCafe.TipoCafe.CON_LECHE) // Valores posibles: SOLO, CON_LECHE
 
     fun setState(newState: MaquinaCafeEstados) {
         if (funcionamientoMaquina(currentState, newState)) {
