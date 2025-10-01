@@ -7,9 +7,13 @@ fun main() {
     //    else -> OpcionCafe(OpcionCafe.TipoCafe.SOLO)
     //}
 
-    StateMachine.setState(MaquinaCafeEstados.Idle)
+    //StateMachine.setState(MaquinaCafeEstados.Idle)
+    //StateMachine.setState(MaquinaCafeEstados.RetirarTaza)
+    StateMachine.setState(MaquinaCafeEstados.ServirLeche)
 
-    if (StateMachine.getState() is MaquinaCafeEstados.Idle) {
-        println("Se completó un ciclo")
-    }
+
+
+  //  if (StateMachine.getState() is MaquinaCafeEstados.Idle) {
+  //      println("Se completó un ciclo")
+  //  }
 }

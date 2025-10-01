@@ -19,8 +19,9 @@ object StateMachine {
     fun funcionamientoMaquina(from: MaquinaCafeEstados, to: MaquinaCafeEstados): Boolean {
         return when (from) {
             MaquinaCafeEstados.Idle -> to == MaquinaCafeEstados.CalentarAgua
-            MaquinaCafeEstados.CalentarAgua -> to == MaquinaCafeEstados.filtrarCafe
-            MaquinaCafeEstados.filtrarCafe -> to == MaquinaCafeEstados.ServirLeche
+            MaquinaCafeEstados.CalentarAgua -> to == MaquinaCafeEstados.FiltrarCafe
+            MaquinaCafeEstados.FiltrarCafe ->
+                to == MaquinaCafeEstados.ServirLeche || to == MaquinaCafeEstados.ServirAzuca
             MaquinaCafeEstados.ServirLeche -> to == MaquinaCafeEstados.ServirAzuca
             MaquinaCafeEstados.ServirAzuca -> to == MaquinaCafeEstados.RetirarTaza
             MaquinaCafeEstados.RetirarTaza -> to == MaquinaCafeEstados.Idle

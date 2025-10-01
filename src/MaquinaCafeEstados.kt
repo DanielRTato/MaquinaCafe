@@ -11,26 +11,26 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
             println("Calentando agua")
-            stateMachine.setState(filtrarCafe)
+            stateMachine.setState(FiltrarCafe)
         }
     }
 
-    object filtrarCafe: MaquinaCafeEstados() {
+    object FiltrarCafe: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
             println("Filtrando el café")
-            stateMachine.setState(ServirLeche)
+            if (stateMachine.opcionCafe.tipo == OpcionCafe.TipoCafe.CON_LECHE) {
+                stateMachine.setState(ServirLeche)
+            } else {
+                stateMachine.setState(ServirAzuca)
+            }
         }
     }
 
     object ServirLeche: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
-            if (stateMachine.opcionCafe.tipo == OpcionCafe.TipoCafe.CON_LECHE) {
-                println("Sirviendo leche")
-            } else {
-                println("Café solo, no se sirve leche")
-            }
+            println("Sirviendo leche")
             stateMachine.setState(ServirAzuca)
         }
     }
