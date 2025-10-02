@@ -1,19 +1,12 @@
 fun main() {
-    println("Encendiendo cafetera!")
-    //println("Elige tipo de café: 1) Solo  2) Con leche")
-    //val opcion = readLine()
-    //StateMachine.opcionCafe = when (opcion) {
-    //"2" -> OpcionCafe(OpcionCafe.TipoCafe.CON_LECHE)
-    //    else -> OpcionCafe(OpcionCafe.TipoCafe.SOLO)
-    //}
 
-    StateMachine.setState(MaquinaCafeEstados.Idle)
-    //StateMachine.setState(MaquinaCafeEstados.RetirarTaza)
-    //StateMachine.setState(MaquinaCafeEstados.ServirLeche)
+    // Probando cafe con leche
+    StateMachine.opcionCafe = OpcionCafe(OpcionCafe.TipoCafe.CON_LECHE)
+    StateMachine.start()
 
+    println("---------------------------------------------------------")
 
-
-  //  if (StateMachine.getState() is MaquinaCafeEstados.Idle) {
-  //      println("Se completó un ciclo")
-  //  }
+    // Probando cafe solo (no sirve leche)
+    StateMachine.opcionCafe = OpcionCafe(OpcionCafe.TipoCafe.SOLO)
+    StateMachine.start()
 }

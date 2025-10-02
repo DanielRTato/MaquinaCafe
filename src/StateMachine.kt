@@ -18,6 +18,11 @@ object StateMachine {
 
     fun getState(): MaquinaCafeEstados = currentState
 
+    fun start() {
+        println("Encendiendo la cafetera")
+        currentState.onEnter(this)
+    }
+
     /** Reinicia la máquina al estado Idle */
     fun reset() {
         println("Reiniciando máquina")
