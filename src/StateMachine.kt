@@ -25,7 +25,7 @@ object StateMachine {
 
     /** Reinicia la máquina al estado Idle */
     fun reset() {
-        println("Reiniciando máquina")
+        println("Reiniciando máquina al estado Idle")
         currentState = MaquinaCafeEstados.Idle
     }
 

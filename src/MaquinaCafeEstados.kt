@@ -50,14 +50,14 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
             println("Estado: " + StateMachine.getState())
             println("Café listo, retira la taza")
             Thread.sleep(2000)
-            stateMachine.reset()
+            stateMachine.reset() // Cuando acaba toodo el proceso pone la maquina en el estado Idle
         }
     }
 
     data class Error(val msg: String) : MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: Error $msg" )
-            stateMachine.reset()
+            stateMachine.reset() // Cuando algo falla vuelve al estado Idle
         }
     }
 }

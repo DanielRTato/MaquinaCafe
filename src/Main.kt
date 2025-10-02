@@ -9,4 +9,5 @@ fun main() {
     // Probando cafe solo (no sirve leche)
     StateMachine.opcionCafe = OpcionCafe(OpcionCafe.TipoCafe.SOLO)
     StateMachine.start()
+    println(StateMachine.getState())
 }

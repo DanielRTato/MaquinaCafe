@@ -25,13 +25,24 @@ class MaquinaCafeEstadosTest {
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirLeche, MaquinaCafeEstados.ServirAzuca))
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirAzuca, MaquinaCafeEstados.RetirarTaza))
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.RetirarTaza, MaquinaCafeEstados.Idle))
-        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.Error, MaquinaCafeEstados.Idle))
-    }
+           }
 
     @Test
     fun cambios_de_estados_invalidos() {
         assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.Idle, MaquinaCafeEstados.ServirLeche))
         assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.CalentarAgua, MaquinaCafeEstados.ServirAzuca))
         assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.RetirarTaza))
+    }
+    @Test
+    fun reset_reinicia_estado() {
+        StateMachine.reset()
+        assertEquals(MaquinaCafeEstados.Idle, StateMachine.getState())
+    }
+
+    @Test
+    fun start_vuelve_a_idle_al_finalizar() {
+        StateMachine.opcionCafe = OpcionCafe(OpcionCafe.TipoCafe.SOLO)
+        StateMachine.start()
+        assertTrue(StateMachine.getState() is MaquinaCafeEstados.Idle)
     }
 }
