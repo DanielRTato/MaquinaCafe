@@ -21,16 +21,16 @@ class MaquinaCafeEstadosTest {
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.CalentarAgua, MaquinaCafeEstados.FiltrarCafe))
         // Ahora FiltrarCafe puede ir a ambos
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.ServirLeche))
-        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.ServirAzuca))
-        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirLeche, MaquinaCafeEstados.ServirAzuca))
-        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirAzuca, MaquinaCafeEstados.RetirarTaza))
+        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.ServirAzucar))
+        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirLeche, MaquinaCafeEstados.ServirAzucar))
+        assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.ServirAzucar, MaquinaCafeEstados.RetirarTaza))
         assertTrue(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.RetirarTaza, MaquinaCafeEstados.Idle))
            }
 
     @Test
     fun cambios_de_estados_invalidos() {
         assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.Idle, MaquinaCafeEstados.ServirLeche))
-        assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.CalentarAgua, MaquinaCafeEstados.ServirAzuca))
+        assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.CalentarAgua, MaquinaCafeEstados.ServirAzucar))
         assertFalse(StateMachine.funcionamientoMaquina(MaquinaCafeEstados.FiltrarCafe, MaquinaCafeEstados.RetirarTaza))
     }
     @Test

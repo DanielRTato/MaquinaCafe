@@ -18,6 +18,10 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
         }
     }
 
+    /**
+     * Si la opcion es cafe solo pasa a ServirAzucar
+     * y si es con leche pasa a ServirLeche
+     */
     object FiltrarCafe: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
@@ -25,7 +29,7 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
             if (stateMachine.opcionCafe.tipo == OpcionCafe.TipoCafe.CON_LECHE) {
                 stateMachine.setState(ServirLeche)
             } else {
-                stateMachine.setState(ServirAzuca)
+                stateMachine.setState(ServirAzucar)
             }
         }
     }
@@ -34,11 +38,11 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
             println("Sirviendo leche")
-            stateMachine.setState(ServirAzuca)
+            stateMachine.setState(ServirAzucar)
         }
     }
 
-    object ServirAzuca: MaquinaCafeEstados() {
+    object ServirAzucar: MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
             println("Estado: " + StateMachine.getState())
             stateMachine.setState(RetirarTaza)
