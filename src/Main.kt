@@ -7,9 +7,9 @@ fun main() {
     //    else -> OpcionCafe(OpcionCafe.TipoCafe.SOLO)
     //}
 
-    //StateMachine.setState(MaquinaCafeEstados.Idle)
+    StateMachine.setState(MaquinaCafeEstados.Idle)
     //StateMachine.setState(MaquinaCafeEstados.RetirarTaza)
-    StateMachine.setState(MaquinaCafeEstados.ServirLeche)
+    //StateMachine.setState(MaquinaCafeEstados.ServirLeche)
 
 
 

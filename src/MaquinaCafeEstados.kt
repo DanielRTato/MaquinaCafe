@@ -1,3 +1,6 @@
+/**
+ * Posibles estados de la máquina de café
+ */
 sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
 
     object Idle : MaquinaCafeEstados() {
@@ -47,18 +50,14 @@ sealed class MaquinaCafeEstados: IMaquinaCafeEstados {
             println("Estado: " + StateMachine.getState())
             println("Café listo, retira la taza")
             Thread.sleep(2000)
-            stateMachine.setState(Idle)
+            stateMachine.reset()
         }
     }
 
-    object Error: MaquinaCafeEstados() {
+    data class Error(val msg: String) : MaquinaCafeEstados() {
         override fun onEnter(stateMachine: StateMachine) {
-            println("Estado: " + StateMachine.getState())
-            println("Error inesperado, reiciciando")
-            stateMachine.setState(Idle)
+            println("Estado: Error $msg" )
+            stateMachine.reset()
         }
     }
-
-
-
 }
